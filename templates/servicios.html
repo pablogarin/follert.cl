@@ -1,0 +1,23 @@
+<div id="servicios" class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <div id="title-menu-lateral">SERVICIOS</div>
+            <ul id="menu-lateral" class="nav nav-stacked">
+                {% for servicio in servicios %}
+                <li><a href="/servicios?id={{servicio.id}}">{{servicio.nombre}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <div class="card-servicio">
+                <div class="foto-container">
+                    <img src="/assets/{{foto}}" class="img-responsive" alt="{{nombre}}"/>
+                </div>
+                <div class="name-container">{{nombre}}</div>
+            </div>
+            <div class="card-detalle">
+                {{descripcion|raw}}
+            </div>
+        </div>
+    </div><!-- /.row -->
+</div>

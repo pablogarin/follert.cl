@@ -1,0 +1,37 @@
+<div id="configs">
+    <form method="POST" name="form-configs" enctype="multipart/form-data">
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Configuraci&oacute;n</th>
+                    <th>Valor</th>
+                </tr>
+                {% for config in configs %}
+                {% if config.type!='hidden' %}
+                <tr>
+                    <td><input type="hidden" name="configs[{{config.id}}][nombre]" value="{{config.nombre}}" />{{config.nombre}}</td>
+                    <td class="form-group">
+                    {% if config.type=='switch' %}
+                    <label class="radio-inline">
+                        <input type="radio" name="configs[{{config.id}}][valor]" value="1"{% if config.valor == '1' %} checked="checked"{% endif %}> Si
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="configs[{{config.id}}][valor]" value="0"{% if config.valor != '1' %} checked="checked"{% endif %}> No
+                    </label>
+                    {% else %}
+                        {% if config.type=='file' %}
+                        <a href="/assets/{{ config.valor }}" target="_blank">Actual: &quot;{{config.valor}}&quot;</a><br/>
+                        <button class="btn btn-primary" onclick="$(this).siblings('input[type=file]:first').click(); return false;">Cambiar</button>
+                        {% endif %}
+                        <input class="form-control" name="configs[{{config.id}}][valor]" value="{{ config.valor }}" type="{{config.type}}" /></td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td colspan="2"><button type="submit" name="grabar" class="btn btn-primary pull-right">GRABAR</button>
+                </tr>
+            </table>
+        </div><!-- /.row -->
+    </form>
+</div>

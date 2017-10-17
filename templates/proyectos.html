@@ -1,0 +1,69 @@
+<div id="proyectos" class="container">
+    <div class="row section-header">
+        <div class="col-md-12 col-xs-12 text-center">
+            <h1 class="title">PROYECTOS</h1>
+            <p>Ac&aacute; puedes encontrar todos los proyectos que hemos hecho para nuestros clientes.</p>
+        </div>
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 text-center">
+            <span class="fechas">1999 - 2001</span>
+            <hr class="fechas-divider">
+        </div>
+    </div><!-- /.row -->
+    <div class="row thumbs-container">
+        {% for proyecto in proyectos[0] %}
+        <div class="thumb">
+            <a href="/assets/{{proyecto.foto}}" target="_blank" rel="test" data-rel="{{proyecto.id}}">
+                <div class="img-container">
+                    <img src="/assets/{{proyecto.foto}}" alt="{{proyecto.titulo}}">
+                </div>
+                <span>{{proyecto.titulo}}</span>
+                <hr class="divider" />
+            </a>
+        </div>
+        {% endfor %}
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 text-center">
+            <span class="fechas">2001 - PRESENTE</span>
+            <hr class="fechas-divider">
+        </div>
+    </div><!-- /.row -->
+    <div class="row thumbs-container">
+        {% for proyecto in proyectos[1] %}
+        <div class="thumb">
+            <a href="/assets/{{proyecto.foto}}" target="_blank" data-rel="{{proyecto.id}}">
+                <div class="img-container">
+                    <img src="/assets/{{proyecto.foto}}" alt="{{proyecto.titulo}}">
+                </div>
+                <span>{{proyecto.titulo}}</span>
+                <hr class="divider" />
+            </a>
+        </div>
+        {% endfor %}
+    </div><!-- /.row -->
+</div>
+<div id="detalle-proyecto" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Cerrar (X)</span></button>
+                <h4 class="modal-title">{{data.titulo}}</h4>
+            </div>
+            <div class="modal-body">
+                <a href="#" class="slider-prev"><img src="/assets/chevron-left-white.png"></a>
+                <div class="carousel">
+                    <div class="item"><img src="/assets/{{data.foto}}" height="450"></div>
+                    {% for item in data.galeria %}
+                    <div class="item"><img src="/assets/{{item.foto}}" height="450"></div>
+                    {% endfor %}
+                </div>
+                <a href="#" class="slider-next"><img src="/assets/chevron-right-white.png"></a>
+                <div class="resumen-proyecto">
+                    {{data.texto|raw}}
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
